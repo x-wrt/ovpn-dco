@@ -22,7 +22,11 @@
 #include "udp.h"
 
 #include <linux/workqueue.h>
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(6, 4, 9)
+#include <linux/netdevice.h>
+#else
 #include <net/gso.h>
+#endif
 #include <uapi/linux/if_ether.h>
 
 static const unsigned char ovpn_keepalive_message[] = {
