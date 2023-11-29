@@ -17,6 +17,8 @@ DEPMOD := depmod -a
 
 REVISION= $(shell	if [ -d "$(PWD)/.git" ]; then \
 				echo $$(git --git-dir="$(PWD)/.git" describe --always --dirty --match "v*" |sed 's/^v//' 2> /dev/null || echo "[unknown]"); \
+			else \
+				$$(basename $(PWD) | sed 's/ovpn-dco-//') \
 			fi)
 
 NOSTDINC_FLAGS += \
